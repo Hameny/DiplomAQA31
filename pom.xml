@@ -18,7 +18,7 @@
     <testng>7.10.2</testng>
     <allure-testng>2.27.0</allure-testng>
     <allure-maven>2.12.0</allure-maven>
-    <selenide>7.3.3</selenide>
+    <selenide>7.10.1</selenide>
     <allure-selenide>2.27.0</allure-selenide>
     <assertj>3.24.2</assertj>
   </properties>
