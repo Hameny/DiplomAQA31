@@ -11,8 +11,8 @@ public class BikesTests extends BaseTest {
 
   @Test(groups = {"regression", "smoke", "LoginWithSuccessLogin"})
   public void positiveAddBikeTest() {
-    AddBikes quickAddBike = new AddBikes.AddBikeBuilder()
-        .setBikeName("New bike")
+    AddBikes quickAddBike = AddBikes.builder()
+        .bikeName("New bike")
         .build();
     calendarPage.isOpen();
     bikesPage.navigateToBikesPage();
@@ -27,11 +27,11 @@ public class BikesTests extends BaseTest {
   }
 
   @Test(groups = {"regression", "smoke", "LoginWithSuccessLogin"})
-  public void negativeAddShoesTest() {
+  public void negativeAddBikesTest() {
     calendarPage.isOpen();
     bikesPage.navigateToBikesPage();
     bikesPage.isOpen();
     bikesPage.clickAddBikesButton();
-    assertEquals(bikesPage.getValidationError(), ERROR);
+    assertEquals(bikesPage.getValidationError(), ERROR,"Ошибка не совпадает");
   }
 }

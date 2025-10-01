@@ -14,8 +14,8 @@ public class CalendarTests extends BaseTest {
 
   @Test(groups = {"LoginWithSuccessLogin", "regression", "smoke", "workoutDeleteToday"})
   public void positiveAddQuickWorkOutTodayByButton() {
-    AddWorkout quickWorkout = new AddWorkout.AddWorkoutBuilder()
-        .setActivityType("Run")
+    AddWorkout quickWorkout =  AddWorkout.builder()
+        .activityType("Run")
         .build();
     dashboardPage.clickCalendarMenu();
     calendarPage.isOpen();
@@ -36,8 +36,8 @@ public class CalendarTests extends BaseTest {
 
   @Test(groups = {"LoginWithSuccessLogin", "regression", "smoke", "workoutDeleteToday"})
   public void addFullFromCalendar() {
-    AddWorkout fullWorkout = new AddWorkout.AddWorkoutBuilder()
-        .setName("morning run")
+    AddWorkout fullWorkout =  AddWorkout.builder()
+        .name("morning run")
         .build();
     dashboardPage.clickCalendarMenu();
     calendarPage.isOpen();
@@ -51,9 +51,9 @@ public class CalendarTests extends BaseTest {
 
   @Test(groups = {"LoginWithSuccessLogin", "regression", "workoutDeleteToday"})
   public void editWorkout() {
-    AddWorkout quickWorkout = new AddWorkout.AddWorkoutBuilder()
-        .setActivityType("Swim")
-        .setName("Плавание")
+    AddWorkout quickWorkout =  AddWorkout.builder()
+        .activityType("Swim")
+        .name("Плавание")
         .build();
     dashboardPage.clickCalendarMenu();
     calendarPage.isOpen();
@@ -64,22 +64,22 @@ public class CalendarTests extends BaseTest {
     calendarPage.editWorkout();
     workoutDetailsPage.isOpen();
     workoutDetailsPage.clickWorkoutActionsDropdown();
-    AddWorkout editWorkout = new AddWorkout.AddWorkoutBuilder()
-        .setTimeOfDay("9:00 PM")
-        .setName("Плавание утром")
-        .setDescription("Плавание в бассейне")
-        .setShowPlannedDistance(true)
-        .setpDistance("1")
-        .setpDistanceType("km")
-        .setpDuration("00:50:00")
-        .setDistance("5.100")
-        .setDistanceType("km")
-        .setDuration("00:40:00")
-        .setPaceType("min/km")
-        .setPerEffort("4 (Moderate)")
-        .setHowFeel("Good")
-        .setkCal("500")
-        .setSaveToLibrary(true)
+    AddWorkout editWorkout =  AddWorkout.builder()
+        .timeOfDay("9:00 PM")
+        .name("Плавание утром")
+        .description("Плавание в бассейне")
+        .showPlannedDistance(true)
+        .distance("1")
+        .plannedDistanceType("km")
+        .duration("00:50:00")
+        .distance("5.100")
+        .distanceType("km")
+        .duration("00:40:00")
+        .paceType("min/km")
+        .perceivedEffort("4 (Moderate)")
+        .overallFeeling("Good")
+        .caloriesBurned("500")
+        .saveToLibrary(true)
         .build();
     workoutDetailsPage.fillWorkoutEditDetails(editWorkout);
     workoutDetailsPage.clickSaveUpdatedWorkout();
@@ -90,8 +90,8 @@ public class CalendarTests extends BaseTest {
 
   @Test(groups = {"LoginWithSuccessLogin", "regression", "workoutDelete"})
   public void viewFutureTrainingFromDashboardPage() {
-    AddWorkout quickWorkout = new AddWorkout.AddWorkoutBuilder()
-        .setActivityType("Bike")
+    AddWorkout quickWorkout =  AddWorkout.builder()
+        .activityType("Bike")
         .build();
     dashboardPage.clickCalendarMenu();
     calendarPage.isOpen();
@@ -108,8 +108,8 @@ public class CalendarTests extends BaseTest {
 
   @Test(groups = {"LoginWithSuccessLogin", "regression"})
   public void viewPastTrainingFromDashboardPage() {
-    AddWorkout quickWorkout = new AddWorkout.AddWorkoutBuilder()
-        .setActivityType("Walk")
+    AddWorkout quickWorkout =  AddWorkout.builder()
+        .activityType("Walk")
         .build();
     dashboardPage.clickCalendarMenu();
     calendarPage.isOpen();

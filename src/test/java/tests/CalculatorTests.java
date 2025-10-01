@@ -13,10 +13,10 @@ public class CalculatorTests extends BaseTest {
 
   @Test(groups = {"LoginWithSuccessLogin", "regression", "smoke"})
   public void positiveIntensityTest() {
-    Calculator intensityCalc = new Calculator.CalculatorBuilder()
-        .setHours("00")
-        .setMinute("12")
-        .setSeconds("5")
+    Calculator intensityCalc = Calculator.builder()
+        .hours("00")
+        .minutes("12")
+        .seconds("5")
         .build();
     dashboardPage.clickCalculatorMenu();
     calculatorPage.isOpen();
@@ -28,8 +28,8 @@ public class CalculatorTests extends BaseTest {
 
   @Test(groups = {"LoginWithSuccessLogin", "regression"})
   public void negativeIntensityTest() {
-    Calculator intensityCalc = new Calculator.CalculatorBuilder()
-        .setMinute("18")
+    Calculator intensityCalc =  Calculator.builder()
+        .minutes("18")
         .build();
     dashboardPage.clickCalculatorMenu();
     calculatorPage.isOpen();
@@ -42,10 +42,10 @@ public class CalculatorTests extends BaseTest {
 
   @Test(groups = {"LoginWithSuccessLogin", "regression"})
   public void positiveTinmanTest() {
-    Calculator intensityCalc = new Calculator.CalculatorBuilder()
-        .setHours("00")
-        .setMinute("16")
-        .setSeconds("23")
+    Calculator intensityCalc = Calculator.builder()
+        .hours("00")
+        .minutes("16")
+        .seconds("23")
         .build();
     dashboardPage.clickCalculatorMenu();
     calculatorPage.isOpen();
@@ -59,9 +59,9 @@ public class CalculatorTests extends BaseTest {
 
   @Test(enabled = false, groups = {"LoginWithSuccessLogin"})
   public void defectTinmanTest() {
-    Calculator intensityCalc = new Calculator.CalculatorBuilder()
-        .setHours("00")
-        .setMinute("20")
+    Calculator intensityCalc = Calculator.builder()
+        .hours("00")
+        .minutes("20")
         .build();
     dashboardPage.clickCalculatorMenu();
     calculatorPage.isOpen();

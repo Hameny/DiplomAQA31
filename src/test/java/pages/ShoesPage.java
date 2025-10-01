@@ -71,14 +71,14 @@ public class ShoesPage extends BasePage {
 
   @Step("Заполнить основную информацию об обуви")
   public void fillBasicShoesInfo(AddShoes quickAddshoes) {
-    $(ADD_SHOES_NAME).setValue(quickAddshoes.getShoesName());
+    $(ADD_SHOES_NAME).setValue(quickAddshoes.getShoeName());
   }
 
   @Step("Получить название обуви со страницы")
   public AddShoes getShoesNameFromPage() {
     String shoesNameFromPage = $(SHOES_INFO_TABLE_CELL).getText();
-    return new AddShoes.AddShoesBuilder()
-        .setShoeName(shoesNameFromPage)
+    return  AddShoes.builder()
+        .shoeName(shoesNameFromPage)
         .build();
   }
 
@@ -98,23 +98,23 @@ public class ShoesPage extends BasePage {
     $(SHOES_PURCHASE_DATE_INPUT).setValue(editAddshoes.getDatePurchased());
     $(SHOES_SIZE_SELECT).selectOption(editAddshoes.getSize());
     $(START_DISTANCE_INPUT).setValue(editAddshoes.getStartDistance());
-    $(DIST_TYPE_SELECT).selectOption(editAddshoes.getStartDistancetype());
+    $(DIST_TYPE_SELECT).selectOption(editAddshoes.getStartDistanceType());
     $(DIST_ALERT_INPUT).setValue(editAddshoes.getAlertDistance());
-    $(DIST_DISTANCE_TYPE_SELECT).selectOption(editAddshoes.getAlertDistancetype());
+    $(DIST_DISTANCE_TYPE_SELECT).selectOption(editAddshoes.getAlertDistanceType());
   }
 
   @Step("Получить полную информацию об обуви со страницы")
   public AddShoes getCompleteShoesInfoFromPage() {
-    AddShoes resultAddShoes = new AddShoes.AddShoesBuilder()
-        .setBrand($(SHOES_BRAND_SELECT).getText())
-        .setModel($(SHOES_MODEL_INPUT).getValue())
-        .setCost($(SHOES_COST_INPUT).getValue())
-        .setDatePurchased($(SHOES_PURCHASE_DATE_INPUT).getValue())
-        .setSize($(SHOES_SIZE_SELECT).getText())
-        .setStartDistance($(START_DISTANCE_INPUT).getValue())
-        .setStartDistancetype($(DIST_TYPE_SELECT).getText())
-        .setAlertDistance($(DIST_ALERT_INPUT).getValue())
-        .setAlertDistancetype($(DIST_DISTANCE_TYPE_SELECT).getText())
+    AddShoes resultAddShoes =  AddShoes.builder()
+        .brand($(SHOES_BRAND_SELECT).getText())
+        .model($(SHOES_MODEL_INPUT).getValue())
+        .cost($(SHOES_COST_INPUT).getValue())
+        .datePurchased($(SHOES_PURCHASE_DATE_INPUT).getValue())
+        .size($(SHOES_SIZE_SELECT).getText())
+        .startDistance($(START_DISTANCE_INPUT).getValue())
+        .startDistanceType($(DIST_TYPE_SELECT).getText())
+        .alertDistance($(DIST_ALERT_INPUT).getValue())
+        .alertDistanceType($(DIST_DISTANCE_TYPE_SELECT).getText())
         .build();
     return resultAddShoes;
   }

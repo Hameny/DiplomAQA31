@@ -14,8 +14,8 @@ public class ReportTests extends BaseTest {
 
   @Test(groups = {"LoginWithSuccessLogin", "regression", "smoke", "workoutDelete"})
   public void positiveViewWorkoutReport() {
-    AddWorkout quickWorkout = new AddWorkout.AddWorkoutBuilder()
-        .setActivityType("Walk")
+    AddWorkout quickWorkout =  AddWorkout.builder()
+        .activityType("Walk")
         .build();
     dashboardPage.clickCalendarMenu();
     calendarPage.isOpen();

@@ -69,13 +69,14 @@ public class BikesPage extends BasePage {
     return $(By.id("ShoeName")).getAttribute("value");
   }
 
-  @Step("Получить название обуви со страницы")
+  @Step("Получить название велосипеда со страницы")
   public AddBikes getBikesNameFromPage() {
-    String shoesNameFromPage = $(BIKES_INFO_TABLE_CELL).getText();
-    return new AddBikes.AddBikeBuilder()
-        .setBikeName(shoesNameFromPage)
+    String bikesNameFromPage = $(BIKES_INFO_TABLE_CELL).getText();
+    return AddBikes.builder()
+        .bikeName(bikesNameFromPage)
         .build();
   }
+
 
   @Step("Получить сообщение об ошибке валидации")
   public String getValidationError() {

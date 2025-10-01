@@ -49,16 +49,16 @@ public class WorkoutDetailsPage extends BasePage {
     $(WORKOUT_NAME_INPUT).setValue(editWorkout.getName());
     $(DESCRIPTION_INPUT).setValue(editWorkout.getDescription());
     $(PLANNED_WORKOUT_CHECKBOX).click();
-    $(PLANNED_DISTANCE_INPUT).setValue(editWorkout.getpDistance());
-    $(PLANNED_DISTANCE_TYPE_SELECT).selectOption(editWorkout.getpDistanceType());
-    $(PLANNED_DURATION_INPUT).setValue(editWorkout.getpDuration());
+    $(PLANNED_DISTANCE_INPUT).setValue(editWorkout.getPlannedDistance());
+    $(PLANNED_DISTANCE_TYPE_SELECT).selectOption(editWorkout.getPlannedDistanceType());
+    $(PLANNED_DURATION_INPUT).setValue(editWorkout.getPlannedDuration());
     $(ACTUAL_DISTANCE_INPUT).setValue(editWorkout.getDistance());
     $(ACTUAL_DISTANCE_TYPE_SELECT).selectOption(editWorkout.getDistanceType());
     $(ACTUAL_DURATION_INPUT).setValue(editWorkout.getDuration());
     $(PACE_TYPE_SELECT).selectOption(editWorkout.getPaceType());
-    $(PERCEIVED_EFFORT_SELECT).selectOption(editWorkout.getPerEffort());
+    $(PERCEIVED_EFFORT_SELECT).selectOption(editWorkout.getPerceivedEffort());
     $(FEELING_GOOD_RADIO).click();
-    $(CALORIES_BURNED_INPUT).setValue(editWorkout.getkCal());
+    $(CALORIES_BURNED_INPUT).setValue(editWorkout.getCaloriesBurned());
     $(SAVE_TO_LIBRARY_CHECKBOX).click();
   }
 
