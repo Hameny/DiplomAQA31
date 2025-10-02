@@ -84,7 +84,7 @@
         <version>3.2.5</version>
         <configuration>
           <suiteXmlFiles>
-            <suiteXmlFile>src/test/resources/suites/${suiteName}.xml</suiteXmlFile>
+            <suiteXmlFile>src/test/resources/testNG/${suiteName}.xml</suiteXmlFile>
           </suiteXmlFiles>
           <argLine>
             -javaagent:${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj}/aspectjweaver-${aspectj}.jar
