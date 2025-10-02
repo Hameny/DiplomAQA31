@@ -14,10 +14,11 @@ public class LoginTest extends BaseTest {
 
   @Test(groups = {"regression", "smoke"}, dataProvider = "Негативные тестовые данные для логина")
   public void negativeLoginTest(String email, String password, String errorMessage) {
-    loginPage.isOpen();
-    loginPage.login(email, password);
-    loginPage.verifyEmailErrorMessageDisplayed();
-    assertEquals(loginPage.getEmailErrorMessageText(), errorMessage);
+    loginPage.isOpen()
+        .login(email, password)
+        .verifyEmailErrorMessageDisplayed();
+    assertEquals(loginPage.getEmailErrorMessageText(), errorMessage,
+        "Сообщение не верного логина не совпадает с ожидаемым");
   }
 
   @DataProvider(name = "Негативные тестовые данные для логина")

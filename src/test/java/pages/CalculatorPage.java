@@ -7,9 +7,11 @@ import static com.codeborne.selenide.Selenide.switchTo;
 
 import io.qameta.allure.Step;
 import dto.Calculator;
+import lombok.extern.log4j.Log4j2;
 import org.openqa.selenium.By;
 
-public class CalculatorPage extends BasePage {
+@Log4j2
+public class CalculatorPage {
 
   private static final String SAVE_BUTTON = "#saveButtonSettings";
   private static final By TINMAN_CALCULATOR_LINK_LOCATOR = By.cssSelector(
@@ -23,53 +25,69 @@ public class CalculatorPage extends BasePage {
   private static final String MINUTES_INPUT_SELECTOR = "#TimeMM";
   private static final String SECONDS_INPUT_SELECTOR = "#TimeSS";
 
-  @Override
-  public void isOpen() {
+  @Step("Page is open")
+  public CalculatorPage isOpen() {
     switchTo().frame(0);
     {
+      log.info("Page is open");
       $(SAVE_BUTTON).shouldBe(clickable);
+      return this;
     }
   }
 
   @Step("Ввести время для расчета интенсивности")
-  public void enterIntensityCalculationTime(Calculator intensityCalc) {
+  public CalculatorPage enterIntensityCalculationTime(Calculator intensityCalc) {
+    log.info("Ввести время для расчета интенсивности");
     $(HOURS_INPUT_SELECTOR).setValue(intensityCalc.getHours());
     $(MINUTES_INPUT_SELECTOR).setValue(intensityCalc.getMinutes());
     $(SECONDS_INPUT_SELECTOR).setValue(intensityCalc.getSeconds());
+    return this;
   }
 
   @Step("Выбрать калькулятор Tinman")
-  public void clickTinmanCalculator() {
+  public CalculatorPage clickTinmanCalculator() {
+    log.info("Выбрать калькулятор Tinman");
     $(TINMAN_CALCULATOR_LINK_LOCATOR).click();
+    return this;
   }
 
   @Step("Выбрать тип события")
-  public void selectEventType() {
+  public CalculatorPage selectEventType() {
+    log.info("Выбрать тип события");
     $(EVENT_TYPE_RADIO_BUTTON_SELECTOR).click();
+    return this;
   }
 
   @Step("Выбрать дистанцию для расчета Tinman")
-  public void selectTinmanRaceDistance(String distance) {
+  public CalculatorPage selectTinmanRaceDistance(String distance) {
+    log.info("Выбрать дистанцию для расчета Tinman");
     $(RACE_DISTANCE_DROPDOWN_LOCATOR).selectOption(distance);
+    return this;
   }
 
   @Step("Нажать кнопку 'Рассчитать'")
-  public void clickCalculateButton() {
+  public CalculatorPage clickCalculateButton() {
+    log.info("Нажать кнопку 'Рассчитать'");
     $(SAVE_BUTTON).click();
+    return this;
   }
 
   @Step("Заполнить гендер")
-  public void selectGender() {
+  public CalculatorPage selectGender() {
+    log.info("Заполнить гендер");
     $(GENDER_RADIO_BUTTON_SELECTOR).click();
+    return this;
   }
 
   @Step("Проверить отображение результатов расчета")
   public boolean isWorkoutSplitResultDisplayed() {
+    log.info("Проверить отображение результатов расчета");
     return $(RACE_SPLIT_RESULT_LOCATOR).should(exist).isDisplayed();
   }
 
   @Step("Получить текст ошибки расчета интенсивности")
   public String getIntensityCalculationErrorMessage() {
+    log.info("Получить текст ошибки расчета интенсивности");
     return $(ERROR_ALERT_LOCATOR).text();
   }
 }

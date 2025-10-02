@@ -12,6 +12,7 @@ public class LogoutTest extends BaseTest {
   public void positiveLogoutTest() {
     calendarPage.isOpen();
     dashboardPage.clickLogoutButton();
-    assertEquals(logoutPage.getSuccessMessage(), LOGOUT_MESSAGE);
+    assertEquals(logoutPage.getSuccessMessage(), LOGOUT_MESSAGE,
+        "Сообщение при logout не совпадает с ожидаемым");
   }
 }

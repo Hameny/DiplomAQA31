@@ -4,9 +4,11 @@ import static com.codeborne.selenide.Condition.clickable;
 import static com.codeborne.selenide.Selenide.$;
 
 import io.qameta.allure.Step;
+import lombok.extern.log4j.Log4j2;
 import org.openqa.selenium.By;
 
-public class DashboardPage extends BasePage {
+@Log4j2
+public class DashboardPage{
 
   private static final By DASHBOARD_MENU_BUTTON_LOCATOR = By.cssSelector(
       "a[href='Default.cshtml'].ptip_s");
@@ -27,63 +29,84 @@ public class DashboardPage extends BasePage {
   private static final By UPCOMING_WORKOUTS_SECTION_LOCATOR = By.cssSelector(
       ".w-box.w-box-green.hideable");
 
-  @Override
-  public void isOpen() {
+  @Step("Page is open")
+  public DashboardPage isOpen() {
+    log.info("Page is open");
     $(ADD_WORKOUT_BUTTON_SELECTOR).shouldBe(clickable);
+    return this;
   }
 
   @Step("Открыть страницу 'Календарь'")
-  public void clickCalendarMenu() {
+  public DashboardPage clickCalendarMenu() {
+    log.info("Открыть страницу 'Календарь'");
     $(CALENDAR_MENU_BUTTON_LOCATOR).click();
+    return this;
   }
 
   @Step("Открыть страницу 'Калькулятор'")
-  public void clickCalculatorMenu() {
+  public DashboardPage clickCalculatorMenu() {
+    log.info("Открыть страницу 'Калькулятор'");
     $(CALCULATOR_MENU_BUTTON_LOCATOR).click();
+    return this;
   }
 
   @Step("Открыть домашнюю страницу")
-  public void clickDashboardMenu2() {
+  public DashboardPage clickDashboardMenu2() {
+    log.info("Открыть домашнюю страницу");
     $(DASHBOARD_MENU_BUTTON_LOCATOR).click();
+    return this;
   }
 
   @Step("Открыть страницу 'Отчёты'")
-  public void clickWorkoutReportPage() {
+  public DashboardPage clickWorkoutReportPage() {
+    log.info("Открыть страницу 'Отчёты'");
     $(WORKOUT_REPORT_MENU_BUTTON_LOCATOR).click();
+    return this;
   }
 
   @Step("Открыть страницу 'Отчёты'")
-  public void clickDashboardMenu() {
+  public DashboardPage clickDashboardMenu() {
+    log.info("Открыть страницу 'Отчёты'");
     $(UPCOMING_WORKOUTS_SECTION_LOCATOR).$(UPCOMING_WORKOUTS_HEADER_SELECTOR).click();
+    return this;
   }
 
   @Step("Открыть раздел 'Предстоящие тренировки'")
   public boolean isUpcomingWorkoutsDisplayed() {
+    log.info("Открыть раздел 'Предстоящие тренировки'");
     return $(UPCOMING_WORKOUTS_SECTION_LOCATOR).$(WORKOUT_DETAILS_TEXT_SELECTOR).exists();
   }
 
   @Step("Проверить наличие предстоящих тренировок")
-  public void clickWorkoutDetailsLink() {
+  public DashboardPage clickWorkoutDetailsLink() {
+    log.info("Проверить наличие предстоящих тренировок");
     $(WORKOUT_DETAILS_LINK_LOCATOR).click();
+    return this;
   }
 
   @Step("Открыть раздел 'Прошедшие тренировки'")
-  public void clickPastWorkoutsSection() {
+  public DashboardPage clickPastWorkoutsSection() {
+    log.info("Открыть раздел 'Прошедшие тренировки'");
     $(PAST_WORKOUTS_SECTION_LOCATOR).click();
+    return this;
   }
 
   @Step("Проверить наличие прошедших тренировок")
   public boolean isPastWorkoutsDisplayed() {
+    log.info("Проверить наличие прошедших тренировок");
     return $(PAST_WORKOUTS_SECTION_LOCATOR).$(WORKOUT_DETAILS_TEXT_SELECTOR).exists();
   }
 
   @Step("Получить текст деталей прошедшей тренировки")
   public String getPastWorkoutDetailsText() {
+    log.info("Получить текст деталей прошедшей тренировки");
     return $(PAST_WORKOUTS_SECTION_LOCATOR).$(PAST_WORKOUTS_DETAILS_SELECTOR).getText();
   }
 
   @Step("Выйти из приложения")
-  public void clickLogoutButton() {
+  public DashboardPage clickLogoutButton() {
+    log.info("Выйти из приложения");
     $(LOGOUT_BUTTON_LOCATOR).click();
+    return this;
   }
 }

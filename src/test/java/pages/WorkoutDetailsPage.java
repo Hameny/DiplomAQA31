@@ -5,9 +5,11 @@ import static com.codeborne.selenide.Selenide.$;
 
 import dto.AddWorkout;
 import io.qameta.allure.Step;
+import lombok.extern.log4j.Log4j2;
 import org.openqa.selenium.By;
 
-public class WorkoutDetailsPage extends BasePage {
+@Log4j2
+public class WorkoutDetailsPage{
 
   private static final String UPDATE_WORKOUT_DROPDOWN = ".dropdown-toggle";
   private static final String SAVE_UPDATED_WORKOUT_BUTTON = "#saveButton";
@@ -28,23 +30,30 @@ public class WorkoutDetailsPage extends BasePage {
   private static final String CALORIES_BURNED_INPUT = "#kCal";
   private static final String SAVE_TO_LIBRARY_CHECKBOX = "#SaveLibrary";
 
-  @Override
-  public void isOpen() {
+  @Step("Page is open")
+  public WorkoutDetailsPage isOpen() {
+    log.info("Page is open");
     $(UPDATE_WORKOUT_DROPDOWN).shouldBe(clickable);
+    return this;
   }
 
   @Step("Нажать кнопку выбора действия для тренировки")
-  public void clickWorkoutActionsDropdown() {
+  public WorkoutDetailsPage clickWorkoutActionsDropdown() {
+    log.info("Нажать кнопку выбора действия для тренировки");
     $(UPDATE_WORKOUT_DROPDOWN).click();
+    return this;
   }
 
   @Step("Сохранить обновленную тренировку")
-  public void clickSaveUpdatedWorkout() {
+  public WorkoutDetailsPage clickSaveUpdatedWorkout() {
+    log.info("Сохранить обновленную тренировку");
     $(SAVE_UPDATED_WORKOUT_BUTTON).click();
+    return this;
   }
 
   @Step("Заполнить детали редактирования тренировки")
-  public void fillWorkoutEditDetails(AddWorkout editWorkout) {
+  public WorkoutDetailsPage fillWorkoutEditDetails(AddWorkout editWorkout) {
+    log.info("Заполнить детали редактирования тренировки");
     $(WORKOUT_TIME_INPUT).setValue(editWorkout.getTimeOfDay());
     $(WORKOUT_NAME_INPUT).setValue(editWorkout.getName());
     $(DESCRIPTION_INPUT).setValue(editWorkout.getDescription());
@@ -60,10 +69,12 @@ public class WorkoutDetailsPage extends BasePage {
     $(FEELING_GOOD_RADIO).click();
     $(CALORIES_BURNED_INPUT).setValue(editWorkout.getCaloriesBurned());
     $(SAVE_TO_LIBRARY_CHECKBOX).click();
+    return this;
   }
 
   @Step("Получить название тренировки со страницы")
   public String getDisplayedWorkoutName() {
+    log.info("Получить название тренировки со страницы");
     return $(WORKOUT_NAME_DISPLAY).getText();
   }
 }

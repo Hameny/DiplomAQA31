@@ -19,25 +19,25 @@ public class CalculatorTests extends BaseTest {
         .seconds("5")
         .build();
     dashboardPage.clickCalculatorMenu();
-    calculatorPage.isOpen();
-    calculatorPage.selectEventType();
-    calculatorPage.enterIntensityCalculationTime(intensityCalc);
-    calculatorPage.clickCalculateButton();
-    assertTrue(calculatorPage.isWorkoutSplitResultDisplayed());
+    calculatorPage.isOpen()
+        .selectEventType()
+        .enterIntensityCalculationTime(intensityCalc)
+        .clickCalculateButton();
+    assertTrue(calculatorPage.isWorkoutSplitResultDisplayed(),"Результат не отображается");
   }
 
   @Test(groups = {"LoginWithSuccessLogin", "regression"})
   public void negativeIntensityTest() {
-    Calculator intensityCalc =  Calculator.builder()
+    Calculator intensityCalc = Calculator.builder()
         .minutes("18")
         .build();
     dashboardPage.clickCalculatorMenu();
-    calculatorPage.isOpen();
-    calculatorPage.selectEventType();
-    calculatorPage.enterIntensityCalculationTime(intensityCalc);
-    calculatorPage.clickCalculateButton();
+    calculatorPage.isOpen()
+        .selectEventType()
+        .enterIntensityCalculationTime(intensityCalc)
+        .clickCalculateButton();
     assertEquals(calculatorPage.getIntensityCalculationErrorMessage(),
-        INTENSITY_CALC_ERROR_MESSAGE);
+        INTENSITY_CALC_ERROR_MESSAGE,"Сообщение не совпадает с ожидаемым");
   }
 
   @Test(groups = {"LoginWithSuccessLogin", "regression"})
@@ -48,13 +48,13 @@ public class CalculatorTests extends BaseTest {
         .seconds("23")
         .build();
     dashboardPage.clickCalculatorMenu();
-    calculatorPage.isOpen();
-    calculatorPage.clickTinmanCalculator();
-    calculatorPage.selectTinmanRaceDistance("5 km");
-    calculatorPage.enterIntensityCalculationTime(intensityCalc);
-    calculatorPage.selectGender();
-    calculatorPage.clickCalculateButton();
-    assertTrue(calculatorPage.isWorkoutSplitResultDisplayed());
+    calculatorPage.isOpen()
+        .clickTinmanCalculator()
+        .selectTinmanRaceDistance("5 km")
+        .enterIntensityCalculationTime(intensityCalc)
+        .selectGender()
+        .clickCalculateButton();
+    assertTrue(calculatorPage.isWorkoutSplitResultDisplayed(),"Результат калькулятора Tinman не отображается");
   }
 
   @Test(enabled = false, groups = {"LoginWithSuccessLogin"})
@@ -64,13 +64,13 @@ public class CalculatorTests extends BaseTest {
         .minutes("20")
         .build();
     dashboardPage.clickCalculatorMenu();
-    calculatorPage.isOpen();
-    calculatorPage.clickTinmanCalculator();
-    calculatorPage.selectTinmanRaceDistance("5 km");
-    calculatorPage.enterIntensityCalculationTime(intensityCalc);
-    calculatorPage.selectGender();
-    calculatorPage.clickCalculateButton();
+    calculatorPage.isOpen()
+        .clickTinmanCalculator()
+        .selectTinmanRaceDistance("5 km")
+        .enterIntensityCalculationTime(intensityCalc)
+        .selectGender()
+        .clickCalculateButton();
     assertEquals(calculatorPage.getIntensityCalculationErrorMessage(),
-        INTENSITY_CALC_ERROR_MESSAGE);
+        INTENSITY_CALC_ERROR_MESSAGE,"Сообщение об ошибке не совпадает с ожидаемым");
   }
 }

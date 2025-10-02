@@ -15,10 +15,10 @@ public class ShoesTests extends BaseTest {
         .shoeName("New running Adidas shoes")
         .build();
     calendarPage.isOpen();
-    shoesPage.navigateToShoesPage();
-    shoesPage.isOpen();
-    shoesPage.fillBasicShoesInfo(quickAddshoes);
-    shoesPage.clickAddShoesButton();
+    shoesPage.navigateToShoesPage()
+        .isOpen()
+        .fillBasicShoesInfo(quickAddshoes)
+        .clickAddShoesButton();
     AddShoes actualAddShoes = shoesPage.getShoesNameFromPage();
     shoesPage.waitForShoesPageLoad();
     assertEquals(actualAddShoes.getShoeName(), quickAddshoes.getShoeName(),
@@ -32,12 +32,12 @@ public class ShoesTests extends BaseTest {
         .shoeName("NEW ADIDAS")
         .build();
     calendarPage.isOpen();
-    shoesPage.navigateToShoesPage();
-    shoesPage.isOpen();
-    shoesPage.fillBasicShoesInfo(quickAddshoes);
-    shoesPage.clickAddShoesButton();
-    shoesPage.clickEditShoesButton();
-    shoesPage.isOpen();
+    shoesPage.navigateToShoesPage()
+        .isOpen()
+        .fillBasicShoesInfo(quickAddshoes)
+        .clickAddShoesButton()
+        .clickEditShoesButton()
+        .isOpen();
     AddShoes editAddshoes = AddShoes.builder()
         .brand("adidas")
         .model("GAZELLE")
@@ -49,9 +49,9 @@ public class ShoesTests extends BaseTest {
         .alertDistance("500")
         .alertDistanceType("km")
         .build();
-    shoesPage.fillDetailedShoesInfo(editAddshoes);
-    shoesPage.clickAddShoesButton();
-    shoesPage.clickEditShoesButton();
+    shoesPage.fillDetailedShoesInfo(editAddshoes)
+        .clickAddShoesButton()
+        .clickEditShoesButton();
     AddShoes actualAddShoes = shoesPage.getCompleteShoesInfoFromPage();
     shoesPage.waitForShoesPageLoad();
     assertEquals(actualAddShoes, editAddshoes,
@@ -61,9 +61,9 @@ public class ShoesTests extends BaseTest {
   @Test(groups = {"regression", "smoke", "LoginWithSuccessLogin"})
   public void negativeAddShoesTest() {
     calendarPage.isOpen();
-    shoesPage.navigateToShoesPage();
-    shoesPage.isOpen();
-    shoesPage.clickAddShoesButton();
+    shoesPage.navigateToShoesPage()
+        .isOpen()
+        .clickAddShoesButton();
     assertEquals(shoesPage.getValidationError(), SHOES_ERROR,
         "Сообщение об ошибке не совпадает с ожидаемым");
   }

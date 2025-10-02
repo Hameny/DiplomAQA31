@@ -14,19 +14,19 @@ public class ReportTests extends BaseTest {
 
   @Test(groups = {"LoginWithSuccessLogin", "regression", "smoke", "workoutDelete"})
   public void positiveViewWorkoutReport() {
-    AddWorkout quickWorkout =  AddWorkout.builder()
+    AddWorkout quickWorkout = AddWorkout.builder()
         .activityType("Walk")
         .build();
     dashboardPage.clickCalendarMenu();
-    calendarPage.isOpen();
-    calendarPage.clickQuickAddToggle();
-    calendarPage.selectActivityType(quickWorkout);
-    calendarPage.clickSaveWorkoutButton();
+    calendarPage.isOpen()
+        .clickQuickAddToggle()
+        .selectActivityType(quickWorkout)
+        .clickSaveWorkoutButton();
     dashboardPage.clickWorkoutReportPage();
-    reportPage.isOpen();
-    reportPage.setWorkoutStartDate(-1);
-    reportPage.setWorkoutEndDate(1);
-    reportPage.clickViewReportButton();
+    reportPage.isOpen()
+        .setWorkoutStartDate(-1)
+        .setWorkoutEndDate(1)
+        .clickViewReportButton();
     assertTrue(reportPage.isReportDisplayed());
     dashboardPage.clickWorkoutDetailsLink();
     switchTo().window(1);
@@ -36,11 +36,12 @@ public class ReportTests extends BaseTest {
   @Test(groups = {"LoginWithSuccessLogin", "regression"})
   public void negativeViewZoneReport() {
     dashboardPage.clickWorkoutReportPage();
-    reportPage.isOpen();
-    reportPage.clickZoneReportLink();
-    reportPage.setWorkoutStartDate(-1);
-    reportPage.setWorkoutEndDate(1);
-    reportPage.clickViewReportButton();
-    Assert.assertEquals(reportPage.getErrorMessage(), ERROR_MESSAGE);
+    reportPage.isOpen()
+        .clickZoneReportLink()
+        .setWorkoutStartDate(-1)
+        .setWorkoutEndDate(1)
+        .clickViewReportButton();
+    Assert.assertEquals(reportPage.getErrorMessage(), ERROR_MESSAGE,
+        "Сообщение об ошибке не совпадает с ожидаемым");
   }
 }

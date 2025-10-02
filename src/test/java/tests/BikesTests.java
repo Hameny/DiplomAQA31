@@ -9,29 +9,30 @@ public class BikesTests extends BaseTest {
 
   private static final String ERROR = "This field is required.";
 
-  @Test(groups = {"regression", "smoke", "LoginWithSuccessLogin"})
+  @Test(description = "Проверка добавления велосипеда",
+      groups = {"regression", "smoke", "LoginWithSuccessLogin"})
   public void positiveAddBikeTest() {
     AddBikes quickAddBike = AddBikes.builder()
-        .bikeName("New bike")
+        .bikeName("Bike for ride")
         .build();
     calendarPage.isOpen();
-    bikesPage.navigateToBikesPage();
-    bikesPage.isOpen();
-    bikesPage.fillBasicBikesInfo(quickAddBike);
-    bikesPage.clickAddBikesButton();
+    bikesPage.navigateToBikesPage()
+        .isOpen()
+        .fillBasicBikesInfo(quickAddBike)
+        .clickAddBikesButton();
     AddBikes actualAddBikes = bikesPage.getBikesNameFromPage();
     bikesPage.waitForBikesPageLoad();
     assertEquals(actualAddBikes.getBikeName(), quickAddBike.getBikeName(),
-        "Имя обуви не совпадает с ожидаемым");
+        "Название велосипеда не совпадает с ожидаемым");
     shoesPage.clickEditShoesButton();
   }
 
   @Test(groups = {"regression", "smoke", "LoginWithSuccessLogin"})
   public void negativeAddBikesTest() {
     calendarPage.isOpen();
-    bikesPage.navigateToBikesPage();
-    bikesPage.isOpen();
-    bikesPage.clickAddBikesButton();
-    assertEquals(bikesPage.getValidationError(), ERROR,"Ошибка не совпадает");
+    bikesPage.navigateToBikesPage()
+        .isOpen()
+        .clickAddBikesButton();
+    assertEquals(bikesPage.getValidationError(), ERROR, "Ошибка не совпадает");
   }
 }

@@ -6,9 +6,11 @@ import static com.codeborne.selenide.Selenide.$;
 
 import io.qameta.allure.Step;
 import dto.AddShoes;
+import lombok.extern.log4j.Log4j2;
 import org.openqa.selenium.By;
 
-public class ShoesPage extends BasePage {
+@Log4j2
+public class ShoesPage{
 
   private static final By ADD_SHOES_BUTTON = By.cssSelector("#saveButton");
   private static final By SHOES_PAGE = By.cssSelector("a[href='EquipmentShoes.cshtml']");
@@ -33,49 +35,65 @@ public class ShoesPage extends BasePage {
   private static final String DIST_ALERT_INPUT = "#DistAlert";
   private static final String DIST_DISTANCE_TYPE_SELECT = "#DistAlertType";
 
-  @Override
-  public void isOpen() {
+  @Step("Page is open")
+  public ShoesPage isOpen() {
+    log.info("Page is open");
     $(ADD_SHOES_BUTTON).shouldBe(clickable);
+    return this;
   }
 
   @Step("Перейти на страницу с обувью")
-  public void navigateToShoesPage() {
+  public ShoesPage navigateToShoesPage() {
+    log.info("Перейти на страницу с обувью");
     $(EQUIPMENT_PAGE).hover();
     $(SHOES_PAGE).click();
+    return this;
   }
 
   @Step("Нажать кнопку добавления обуви")
-  public void clickAddShoesButton() {
+  public ShoesPage clickAddShoesButton() {
+    log.info("Нажать кнопку добавления обуви");
     $(ADD_SHOES_BUTTON).click();
+    return this;
   }
 
   @Step("Получить сообщение об ошибке валидации")
   public String getValidationError() {
+    log.info("Получить сообщение об ошибке валидации");
     return $(ERROR_MESSAGE).getText();
   }
 
   @Step("Нажать кнопку редактирования обуви")
-  public void clickEditShoesButton() {
+  public ShoesPage clickEditShoesButton() {
+    log.info("Нажать кнопку редактирования обуви");
     $(EDIT_SHOES_BUTTON).click();
+    return this;
   }
 
   @Step("Дождаться загрузки страницы обуви")
-  public void waitForShoesPageLoad() {
+  public ShoesPage waitForShoesPageLoad() {
+    log.info("Дождаться загрузки страницы обуви");
     $(EDIT_SHOES_BUTTON).shouldBe(clickable);
+    return this;
   }
 
   @Step("Нажать кнопку удаления обуви")
-  public void clickDeleteShoesButton() {
+  public ShoesPage clickDeleteShoesButton() {
+    log.info("Нажать кнопку удаления обуви");
     $(DELETE_SHOES_BUTTON).click();
+    return this;
   }
 
   @Step("Заполнить основную информацию об обуви")
-  public void fillBasicShoesInfo(AddShoes quickAddshoes) {
+  public ShoesPage fillBasicShoesInfo(AddShoes quickAddshoes) {
+    log.info("Заполнить основную информацию об обуви");
     $(ADD_SHOES_NAME).setValue(quickAddshoes.getShoeName());
+    return this;
   }
 
   @Step("Получить название обуви со страницы")
   public AddShoes getShoesNameFromPage() {
+    log.info("Получить название обуви со страницы");
     String shoesNameFromPage = $(SHOES_INFO_TABLE_CELL).getText();
     return  AddShoes.builder()
         .shoeName(shoesNameFromPage)
@@ -83,14 +101,17 @@ public class ShoesPage extends BasePage {
   }
 
   @Step("Удалить обувь с подтверждением")
-  public void deleteShoesWithConfirmation() {
+  public ShoesPage deleteShoesWithConfirmation() {
+    log.info("Удалить обувь с подтверждением");
     clickDeleteShoesButton();
     $(CONFIRMATION_MODAL).$(CONFIRM_DELETE_BUTTON).click();
     $(CALENDAR_DAY_CONTENT).$(ACTIVITY_TITLE).shouldBe(disappear);
+    return this;
   }
 
   @Step("Заполнить детальную информацию об обуви")
-  public void fillDetailedShoesInfo(AddShoes editAddshoes) {
+  public ShoesPage fillDetailedShoesInfo(AddShoes editAddshoes) {
+    log.info("Заполнить детальную информацию об обуви");
     $(BRAND_DROPDOWN_TOGGLE).click();
     $(SHOES_BRAND_SELECT).selectOption(editAddshoes.getBrand());
     $(SHOES_MODEL_INPUT).setValue(editAddshoes.getModel());
@@ -101,10 +122,12 @@ public class ShoesPage extends BasePage {
     $(DIST_TYPE_SELECT).selectOption(editAddshoes.getStartDistanceType());
     $(DIST_ALERT_INPUT).setValue(editAddshoes.getAlertDistance());
     $(DIST_DISTANCE_TYPE_SELECT).selectOption(editAddshoes.getAlertDistanceType());
+    return this;
   }
 
   @Step("Получить полную информацию об обуви со страницы")
   public AddShoes getCompleteShoesInfoFromPage() {
+    log.info("Получить полную информацию об обуви со страницы");
     AddShoes resultAddShoes =  AddShoes.builder()
         .brand($(SHOES_BRAND_SELECT).getText())
         .model($(SHOES_MODEL_INPUT).getValue())
