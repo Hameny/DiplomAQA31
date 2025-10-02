@@ -32,7 +32,6 @@ jobs:
       - name: Generate Allure Report
         if: always()
         run: mvn allure:report
-        working-directory: ./DiplomAQA31
 
       - name: Upload Allure results artifact
         if: always()
