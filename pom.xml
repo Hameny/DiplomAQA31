@@ -69,11 +69,11 @@
       <version>${assertj}</version>
       <scope>test</scope>
     </dependency>
+    <!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
     <dependency>
       <groupId>org.projectlombok</groupId>
       <artifactId>lombok</artifactId>
-      <version>RELEASE</version>
-      <scope>test</scope>
+      <version>1.18.38</version>
     </dependency>
   </dependencies>
   <build>
