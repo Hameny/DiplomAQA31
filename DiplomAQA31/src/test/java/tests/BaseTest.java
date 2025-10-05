@@ -106,7 +106,7 @@ public class BaseTest {
     }
 
     @AfterMethod(alwaysRun = true)
-    public void postCondition() {
+    public void tearDown() {
         closeWebDriver();
     }
 }
