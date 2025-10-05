@@ -26,10 +26,6 @@ jobs:
           distribution: 'temurin'
           cache: maven
 
-      - name: Build project
-        run: mvn compile -q
-        working-directory: ./src
-
       - name: Run tests
         run: mvn clean test -Duser=$USER -Dpassword=$PASSWORD
 
