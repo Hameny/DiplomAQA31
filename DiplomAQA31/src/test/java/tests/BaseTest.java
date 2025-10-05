@@ -54,6 +54,13 @@ public class BaseTest {
         Configuration.headless = Boolean.parseBoolean(PropertyReader.getProperty("headless"));
         Configuration.timeout = 10000;
         Configuration.fileDownload = FileDownloadMode.FOLDER;
+        Configuration.browserCapabilities.setCapability("chromeOptions", java.util.Map.of(
+            "args", java.util.List.of(
+                "--no-sandbox",
+                "--disable-dev-shm-usage",
+                "--remote-allow-origins=*"
+            )
+        ));
         SelenideLogger.addListener("AllureSelenide", new AllureSelenide().screenshots(true).savePageSource(true));
 
         this.loginPage = new LoginPage();
@@ -71,10 +78,11 @@ public class BaseTest {
 
     @BeforeMethod(onlyForGroups = "LoginWithSuccessLogin", alwaysRun = true)
     public void preConditionForGroup() {
+        open("/");
         loginPage.login(BASE_LOGIN, BASE_PASSWORD);
     }
 
-    @BeforeMethod(alwaysRun = true)
+    @BeforeMethod(alwaysRun = true, exceptGroups = "LoginWithSuccessLogin")
     public void preCondition() {
         open("/");
     }

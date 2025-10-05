@@ -10,8 +10,7 @@ public class LogoutTest extends BaseTest {
 
   @Test(groups = {"smoke", "regression", "LoginWithSuccessLogin"})
   public void positiveLogoutTest() {
-    calendarPage.isOpen();
-    dashboardPage.clickLogoutButton();
+    logoutPage.logout();
     assertEquals(logoutPage.getSuccessMessage(), LOGOUT_MESSAGE,
         "Сообщение при logout не совпадает с ожидаемым");
   }

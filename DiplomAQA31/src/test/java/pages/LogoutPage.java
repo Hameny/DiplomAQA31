@@ -10,8 +10,16 @@ import org.openqa.selenium.By;
 @Log4j2
 public class LogoutPage {
 
-  private static final By LOGIN_BUTTON_SELECTOR = By.cssSelector(".signup");
-  private static final By SUCCESS_MESSAGE_SELECTOR = By.cssSelector(".alert.alert-success");
+  private final By LOGIN_BUTTON_SELECTOR = By.cssSelector(".signup");
+  private final By SUCCESS_MESSAGE_SELECTOR = By.cssSelector(".alert.alert-success");
+
+  @Step("Выход из системы")
+  public LogoutPage logout() {
+    log.info("Выход из системы");
+    new DashboardPage().clickLogoutButton();
+    $(LOGIN_BUTTON_SELECTOR).shouldBe(clickable);
+    return this;
+  }
 
   @Step("Page is open")
   public LogoutPage isOpen() {
