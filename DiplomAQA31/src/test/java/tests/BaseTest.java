@@ -57,8 +57,10 @@ public class BaseTest {
         Configuration.browserCapabilities.setCapability("chromeOptions", java.util.Map.of(
             "args", java.util.List.of(
                 "--no-sandbox",
+                "--headless=new",
                 "--disable-dev-shm-usage",
-                "--remote-allow-origins=*"
+                "--remote-allow-origins=*",
+                "--window-size=1920,1080"
             )
         ));
         SelenideLogger.addListener("AllureSelenide", new AllureSelenide().screenshots(true).savePageSource(true));
