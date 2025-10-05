@@ -76,15 +76,17 @@ public class BaseTest {
         this.bikesPage = new BikesPage();
     }
 
-    @BeforeMethod(onlyForGroups = "LoginWithSuccessLogin", alwaysRun = true)
-    public void preConditionForGroup() {
+    @BeforeMethod(alwaysRun = true)
+    public void preCondition(java.lang.reflect.Method method) {
         open("/");
-        loginPage.login(BASE_LOGIN, BASE_PASSWORD);
-    }
-
-    @BeforeMethod(alwaysRun = true, exceptGroups = "LoginWithSuccessLogin")
-    public void preCondition() {
-        open("/");
+        org.testng.annotations.Test testAnnotation = method.getAnnotation(org.testng.annotations.Test.class);
+        if (testAnnotation != null) {
+            boolean needsLogin = java.util.Arrays.stream(testAnnotation.groups())
+                .anyMatch(g -> g.equals("LoginWithSuccessLogin"));
+            if (needsLogin) {
+                loginPage.login(BASE_LOGIN, BASE_PASSWORD);
+            }
+        }
     }
 
     @AfterMethod(onlyForGroups = "shoesDelete", alwaysRun = true)
